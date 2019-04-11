@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postdb:
-    image: postgres:11.2
+    image: postgres:11-alpine
     ports:
       - 5432:5432
     environment:
