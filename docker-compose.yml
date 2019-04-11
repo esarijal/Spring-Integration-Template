@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  postdb:
+    image: postgres:11.2
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=go
+  app:
+    image: ermustaqbal/middleware-go:1.0-SNAPSHOT
+    depends_on:
+      - postdb
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postdb/go
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
